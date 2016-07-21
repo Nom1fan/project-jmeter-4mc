@@ -1,0 +1,8 @@
+package config;
+
+import ClientObjects.IServerProxy;
+
+public interface Config {
+
+	IServerProxy getServerProxy();
+}

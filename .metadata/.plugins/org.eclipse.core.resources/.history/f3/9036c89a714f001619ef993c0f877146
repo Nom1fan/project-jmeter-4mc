@@ -1,0 +1,29 @@
+package tests;
+import java.io.IOException;
+
+import tests_infra.TestCase;
+import tests_infra.exceptions.TestFailedException;
+import EventObjects.EventType;
+
+public class PingTest extends TestCase {	 
+		
+	@Override
+	public void runTest() throws IOException, InterruptedException, TestFailedException {					
+		_serverProxy.ping(_userA.getId());
+		_sampleResult.sampleStart();
+		assertResult(EventType.PING);
+	}
+	
+	@Override
+	protected void testCleanUp() {	 	
+		  	
+	  	try {
+			_serverProxy.deleteUser(_userA.getId());
+			waitWithoutAssert();
+			
+		} catch (Exception e) {				
+			_logger.warning("testCleanUp() failed. Exception:"+(e.getMessage()!=null ? e.getMessage() : e));
+			
+		}	  
+	 }	 
+}

@@ -1,0 +1,9 @@
+package infra;
+
+public class ObjectFactory {
+
+	public ObjectFactory() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

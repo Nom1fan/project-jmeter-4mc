@@ -1,0 +1,8 @@
+package config;
+
+import ClientObjects.ServerProxy;
+
+public interface Config {
+
+	Class getConreteType(Class inf);
+}

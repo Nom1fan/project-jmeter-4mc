@@ -1,0 +1,58 @@
+package ioc_infra.configurers;
+
+import ioc_infra.ObjectFactory;
+import ioc_infra.annotations.InjectByType;
+import ioc_infra.config.Config;
+import ioc_infra.config.JavaConfig;
+
+import java.lang.reflect.Field;
+import java.util.List;
+
+import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
+
+import com.google.common.base.Nullable;
+import com.google.common.collect.Lists;
+
+/**
+ * Created by Mor on 15/07/2016.
+ */
+public class InjectByTypeConfigurator implements ObjectConfigurer {
+
+    private Config config = new JavaConfig();
+
+    @Override
+    public void configure(Object o) throws Exception {
+        Iterable<Field> fields = getFieldsUpTo(o.getClass(), Object.class);
+        for (Field field : fields) {
+            if (field.isAnnotationPresent(InjectByType.class)) {
+                Class<?> type = field.getType();
+                Object value = ObjectFactory.getInstance().createObject(type);
+                field.setAccessible(true);
+                field.set(o,value);
+            }
+        }
+    }
+
+    public Iterable<Field> getFieldsUpTo(Class<?> startClass,
+                                                @Nullable Class<?> exclusiveParent) {
+
+        List<Field> currentClassFields = Lists.newArrayList(startClass.getDeclaredFields());
+        Class<?> parentClass = startClass.getSuperclass();
+
+        if (parentClass != null &&
+                (exclusiveParent == null || !(parentClass.equals(exclusiveParent)))) {
+            List<Field> parentClassFields =
+                    (List<Field>) getFieldsUpTo(parentClass, exclusiveParent);
+            currentClassFields.addAll(parentClassFields);
+        }
+
+        return currentClassFields;
+    }
+
+	@Override
+	public void configure(Object object, JavaSamplerContext ctx)
+			throws Exception {
+		configure(object);
+		
+	}
+}

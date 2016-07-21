@@ -1,0 +1,15 @@
+package configurers;
+
+public class PropertyConfigurer implements ObjectConfigurer {
+
+	public PropertyConfigurer()  {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void configure(Object object) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,48 @@
+package tests_infra.proxies.actions;
+
+import java.util.HashMap;
+
+import Exceptions.NoSuchClientActionException;
+import MessagesToClient.ClientActionType;
+
+/**
+ * Created by Mor on 23/04/2016.
+ */
+public class ActionFactoryImpl {
+
+    private static final String TAG = ActionFactoryImpl.class.getSimpleName();
+    private static ActionFactoryImpl _instance;
+    @SuppressWarnings("unchecked")
+	private HashMap<ClientActionType, Class<ClientAction>> actionType2Action = new HashMap() {{
+    	put(ClientActionType.DOWNLOAD_FILE, ClientActionDownloadFile.class);
+    	put(ClientActionType.GET_APP_RECORD_RES, ClientActionGetAppRecordRes.class);
+    	put(ClientActionType.IS_REGISTERED_RES, ClientActionIsRegisteredRes.class);
+    	put(ClientActionType.REGISTER_RES, ClientActionRegisterRes.class);
+    	put(ClientActionType.UNREGISTER_RES, ClientActionUnregisterRes.class);
+    	put(ClientActionType.TRIGGER_EVENT, ClientActionTriggerEvent.class);
+    	put(ClientActionType.UPDATE_RES, ClientActionUpdateUserRecordRes.class);
+    	put(ClientActionType.PING, ClientActionPing.class);
+    }};
+
+    private ActionFactoryImpl() {
+        super();
+    }
+
+    public static ActionFactoryImpl instance() {
+
+        if(_instance == null)
+            _instance = new ActionFactoryImpl();
+        return _instance;
+    }
+
+    public ClientAction getAction(ClientActionType clientActionType) throws NoSuchClientActionException, InstantiationException, IllegalAccessException {
+
+        ClientAction resultClientAction = null;
+        Class<ClientAction> aClass = actionType2Action.get(clientActionType);
+        if(aClass==null)          
+            throw new NoSuchClientActionException(String.format("Failure to perform action. No such client action: %s", clientActionType));
+
+        resultClientAction = aClass.newInstance();        
+        return resultClientAction;
+    }
+}

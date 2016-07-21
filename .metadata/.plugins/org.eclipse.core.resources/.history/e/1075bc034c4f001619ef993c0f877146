@@ -1,0 +1,36 @@
+package configurers;
+
+import java.lang.reflect.Field;
+
+import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
+
+import annotations.InjectByContext;
+
+public class ContextConfigurer implements ObjectConfigurer {
+
+	public ContextConfigurer()  {
+		
+	}
+
+	@Override
+	public void configure(Object object, JavaSamplerContext ctx) throws Exception {
+		Field[] fields = object.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			if(field.isAnnotationPresent(InjectByContext.class)) {
+				String key = field.getAnnotation(InjectByContext.class).property();
+				String val = ctx.getParameter(key);								
+				field.setAccessible(true);
+				field.set(object, val);				
+			}
+			
+		}
+		
+		
+	}
+
+	@Override
+	public void configure(Object object) throws Exception {		
+		
+	}
+
+}

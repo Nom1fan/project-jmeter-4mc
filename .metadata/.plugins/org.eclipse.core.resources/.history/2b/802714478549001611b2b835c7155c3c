@@ -1,0 +1,36 @@
+package infra;
+
+import java.lang.reflect.Type;
+
+import config.Config;
+import config.JavaConfig;
+
+public class ObjectFactory {
+
+	private static ObjectFactory instance;
+	private Config config = new JavaConfig();
+	
+	private ObjectFactory() {		
+	}
+	
+	public static ObjectFactory getInstance() {
+		if(instance==null)
+			instance = new ObjectFactory();
+		return instance;
+	}
+	
+	public <T> Object createObject(T t) throws Exception {
+		Object resultObj;
+		Class type = t.getClass();
+		if(type.isInterface()) {
+			Class implType = config.getImplType(type);
+			resultObj = implType.newInstance();			
+		}
+		else
+		{
+			resultObj = type.newInstance();
+		}
+		return resultObj;
+	}
+
+}

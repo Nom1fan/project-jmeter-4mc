@@ -1,0 +1,16 @@
+package config;
+
+import ClientObjects.IServerProxy;
+
+public class JavaConfig implements Config {
+
+	public JavaConfig() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public IServerProxy getServerProxy() {
+		IServerProxy serverProxy
+	}
+
+}

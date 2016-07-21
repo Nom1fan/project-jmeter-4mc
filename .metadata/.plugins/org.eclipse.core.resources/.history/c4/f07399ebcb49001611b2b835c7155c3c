@@ -1,0 +1,30 @@
+package configurers;
+
+import java.lang.reflect.Field;
+
+import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
+
+import annotations.Property;
+
+public class PropertyConfigurer implements ObjectConfigurer {
+
+	public PropertyConfigurer()  {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void configure(Object object, JavaSamplerContext ctx) throws Exception {
+		Field[] fields = object.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			if(field.isAnnotationPresent(Property.class)) {
+				String val = field.getAnnotation(Property.class).property();
+				field.setAccessible(true);
+				field.set(object, val);				
+			}
+			
+		}
+		
+		
+	}
+
+}

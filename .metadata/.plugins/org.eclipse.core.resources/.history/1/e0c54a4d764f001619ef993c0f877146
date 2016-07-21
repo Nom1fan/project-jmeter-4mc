@@ -1,0 +1,34 @@
+package ioc_infra.configurers;
+
+import ioc_infra.annotations.InjectIntegerByContext;
+import ioc_infra.annotations.InjectStringByContext;
+
+import java.lang.reflect.Field;
+
+import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
+
+public class InjectByIntegerContextConfigurer implements ObjectConfigurer {
+
+	public InjectByIntegerContextConfigurer()  {
+		
+	}
+	
+	@Override
+	public void configure(Object object, JavaSamplerContext ctx) throws Exception {
+		Field[] fields = object.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			if(field.isAnnotationPresent(InjectIntegerByContext.class)) {
+				String key = field.getAnnotation(InjectIntegerByContext.class).key();
+				Integer val = Integer.parseInt(ctx.getParameter(key));								
+				field.setAccessible(true);
+				field.set(object, val);				
+			}
+		}
+	}
+
+	@Override
+	public void configure(Object object) throws Exception {		
+		
+	}
+
+}

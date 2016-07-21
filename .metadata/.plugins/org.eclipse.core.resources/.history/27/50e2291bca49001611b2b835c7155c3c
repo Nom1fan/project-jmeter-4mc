@@ -1,0 +1,5 @@
+package configurers;
+
+public interface ObjectConfigurer {
+    void configure(Object object) throws Exception;
+}

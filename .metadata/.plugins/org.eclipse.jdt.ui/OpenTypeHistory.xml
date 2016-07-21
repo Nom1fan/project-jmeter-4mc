@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=shared/src&lt;DataObjects{DataKeys.java[DataKeys" modifiers="16385" timestamp="1466266986925"/>
+<typeInfo handle="=shared/src&lt;EventObjects{EventType.java[EventType" modifiers="16385" timestamp="1466282001081"/>
+<typeInfo handle="=4JMeter/src&lt;tests{IsRegisteredTest.java[IsRegisteredTest" modifiers="1" timestamp="1468475389499"/>
+<typeInfo handle="=4JMeter/src&lt;infrastructure{TestCase.java[TestCase" modifiers="1025" timestamp="1468504948145"/>
+<typeInfo handle="=4JMeter/src&lt;proxies{SimpleServerProxy.java[SimpleServerProxy" modifiers="1" timestamp="1468505165156"/>
+<typeInfo handle="=4JMeter/src&lt;data_objects{Constants.java[Constants" modifiers="1025" timestamp="1468475398539"/>
+<typeInfo handle="=4JMeter/src&lt;actions{ActionFactory.java[ActionFactory" modifiers="1" timestamp="1466259093736"/>
+</typeInfoHistroy>

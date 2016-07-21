@@ -1,0 +1,35 @@
+1453839979110	Rename local variable 'token'
+1453840567328	Rename method 'getSampleResultPassed'
+1453840575756	Rename method 'getSampleResultFailed'
+1453904768431	Copy compilation unit
+1453904797612	Delete element
+1453905015742	Rename local variable '_sampleResult'
+1453905644446	Delete element
+1453930364481	Rename method 'messageActionComplete'
+1453930625356	Rename method 'getRandomGeneratedId'
+1453931282216	Rename type 'IdGenerator'
+1454065391037	Rename type 'FirstMediaCallzTest'
+1454065418437	Move compilation unit
+1454065490676	Rename package 'Infrastructure'
+1454065498516	Move compilation unit
+1454065547650	Move compilation unit
+1454083046016	Encapsulate field '_token'
+1454084388948	Rename compilation unit 'UploadFile.java'
+1454086172141	Rename field '_nextExpectedEventReport'
+1454088333227	Delete element
+1454088340521	Rename compilation unit 'UploadFileTest.java'
+1454088468388	Rename resource 'Stick people fight (so damn funny).avi'
+1454090037111	Delete element
+1454090085696	Rename type 'UploadCallerMediaTest'
+1454090180827	Rename local variable 'userB'
+1454099691275	Delete element
+1454100028737	Delete element
+1454143433498	Move compilation unit
+1454143494635	Rename method 'actionComplete'
+1454144853574	Rename method 'handleResult'
+1454146137488	Rename field '_conn'
+1454146156761	Rename field '_host'
+1454146162768	Rename field '_port'
+1454149293996	Rename field 'lastEventReport'
+1454152079659	Delete element
+1454152082584	Delete element

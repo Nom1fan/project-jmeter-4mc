@@ -1,0 +1,26 @@
+package configurers;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+
+public class PropertyConfigurer implements ObjectConfigurer {
+
+	public PropertyConfigurer()  {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void configure(Object object) throws Exception {
+		Field[] fields = object.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			if(field.isAnnotationPresent(Property.class)) {
+				
+				
+			}
+			
+		}
+		
+		
+	}
+
+}

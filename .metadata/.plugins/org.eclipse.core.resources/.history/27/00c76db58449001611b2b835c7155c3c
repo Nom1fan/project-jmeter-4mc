@@ -1,0 +1,16 @@
+package infra;
+
+public class ObjectFactory {
+
+	private static ObjectFactory instance;
+	
+	private ObjectFactory() {		
+	}
+	
+	public static getInstance() {
+		if(instance==null)
+			instance = new ObjectFactory();
+		return instance;
+	}
+
+}

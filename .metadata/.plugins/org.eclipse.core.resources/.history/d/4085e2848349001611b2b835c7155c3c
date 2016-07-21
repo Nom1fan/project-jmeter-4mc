@@ -1,0 +1,9 @@
+package config;
+
+public class JavaConfig {
+
+	public JavaConfig() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

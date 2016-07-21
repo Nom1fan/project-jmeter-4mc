@@ -1,0 +1,8 @@
+package configurers;
+
+import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
+
+public interface ObjectConfigurer {
+    void configure(Object object) throws Exception;
+    void configure(Object object, JavaSamplerContext ctx);
+}

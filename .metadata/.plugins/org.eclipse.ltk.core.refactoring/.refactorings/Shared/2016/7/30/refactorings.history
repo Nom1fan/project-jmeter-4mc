@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;logFilePath&apos; in &apos;LogObjects.LogsManager.getLogPrintStream(...)&apos; to &apos;logFilePath&apos;&#x0D;&#x0A;- Original project: &apos;shared&apos;&#x0D;&#x0A;- Original element: &apos;LogObjects.LogsManager.getLogPrintStream(String).name&apos;&#x0D;&#x0A;- Renamed element: &apos;logFilePath&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;logFilePath&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;LogObjects{LogsManager.java[LogsManager~getLogPrintStream~QString;@name!4118!4128!4125!4128!QString;!0!true" name="logFilePath" references="true" stamp="1469126708798" version="1.0"/>
+</session>

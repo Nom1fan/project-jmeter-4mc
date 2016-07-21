@@ -1,0 +1,9 @@
+package ClientObjects;
+
+import MessagesToClient.MessageToClient;
+
+public interface ServerProxy {
+
+	public void handleMessageFromServer(MessageToClient msg, ConnectionToServer connectionToServer);
+	public void handleDisconnection(ConnectionToServer cts, String msg);
+}

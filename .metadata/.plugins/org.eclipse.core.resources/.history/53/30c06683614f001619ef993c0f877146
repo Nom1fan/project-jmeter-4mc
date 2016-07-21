@@ -1,0 +1,79 @@
+package ioc_infra;
+
+import ioc_infra.config.Config;
+import ioc_infra.config.JavaConfig;
+import ioc_infra.configurers.ObjectConfigurer;
+
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
+import org.reflections.Reflections;
+
+public class ObjectFactory {
+
+	private static ObjectFactory instance;
+	private Config config = new JavaConfig();
+	private List<ObjectConfigurer> objectConfigurers = new ArrayList<>();
+	private Reflections reflections = new Reflections(ObjectConfigurer.class.getPackage());
+	
+	private ObjectFactory() {	
+	    Set<Class<? extends ObjectConfigurer>> classes = reflections.getSubTypesOf(ObjectConfigurer.class);	 
+        for (Class<? extends ObjectConfigurer> aClass : classes) {
+            if (!Modifier.isAbstract(aClass.getModifiers())) {
+                try {
+                    objectConfigurers.add(aClass.newInstance());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        } 
+	}
+	
+	public static ObjectFactory getInstance() {
+		if(instance==null)
+			instance = new ObjectFactory();
+		return instance;
+	}
+	
+	public <T> T createObject(Class<T> type, JavaSamplerContext ctx) throws Exception {
+		T resultObj;
+		type = resolveImplClass(type);
+		resultObj = type.newInstance();		
+		configure(resultObj, ctx);
+		return resultObj;
+	}
+	
+	public <T> T createObject(Class<T> type) throws Exception {
+		T resultObj;
+		type = resolveImplClass(type);
+		resultObj = type.newInstance();		
+		configure(resultObj);
+		return resultObj;
+	}
+	
+	 private <T> Class<T> resolveImplClass(Class<T> type) {		 
+		 if(type.isInterface()) {
+			 type = config.getImplType(type);
+		 }
+		 return type;		 
+	 }
+	 
+	 private void configure(Object o) throws Exception {
+		 for (ObjectConfigurer objectConfigurer : objectConfigurers) {
+			objectConfigurer.configure(o);
+		}
+	 }
+	 
+	 private void configure(Object o, JavaSamplerContext ctx) throws Exception {
+		 for (ObjectConfigurer objectConfigurer : objectConfigurers) {
+			objectConfigurer.configure(o,ctx);
+			objectConfigurer.configure(o);
+		}
+	 }
+	 
+	 
+
+}

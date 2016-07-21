@@ -1,0 +1,9 @@
+package configurers;
+
+public class PropertyConfigurer {
+
+	public PropertyConfigurer() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
